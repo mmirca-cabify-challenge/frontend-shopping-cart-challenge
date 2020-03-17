@@ -1,0 +1,28 @@
+{
+  "name": "frontend-shopping-cart-challenge",
+  "version": "1.0.0",
+  "description": "A shopping cart made using web components",
+  "main": "index.js",
+  "scripts": {
+    "build": "rollup -c",
+    "start": "rollup -c --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mmirca-cabify-challenge/frontend-shopping-cart-challenge.git"
+  },
+  "author": "mmirca",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mmirca-cabify-challenge/frontend-shopping-cart-challenge/issues"
+  },
+  "dependencies": {
+    "lit-element": "^2.2.1"
+  },
+  "devDependencies": {
+    "cap-rollup-config": "^1.0.1",
+    "rollup": "^1.25.2"
+  },
+  "homepage": "https://github.com/mmirca-cabify-challenge/frontend-shopping-cart-challenge#readme"
+}
