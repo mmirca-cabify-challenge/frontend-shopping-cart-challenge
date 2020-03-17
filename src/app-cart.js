@@ -1,15 +1,9 @@
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="shortcut icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#7350FF" />
-    <link rel="manifest" href="/manifest.json" />
-    <link href="css/main.css" rel="stylesheet" />
-    <title>Cabify Checkout Challenge</title>
-  </head>
-  <body>
-    <div id="root">
+import { LitElement, html } from 'lit-element';
+
+export class AppCart extends LitElement {
+  render() {
+    return html`
+      <link href="./assets/css/main.css" rel="stylesheet" />
       <main class="App">
         <section class="products">
           <h1 class="main">Shopping cart</h1>
@@ -25,7 +19,7 @@
             <li class="product row">
               <div class="col-product">
                 <figure class="product-image">
-                  <img src="img/shirt.png" alt="Shirt" />
+                  <img src="./assets/img/shirt.png" alt="Shirt" />
                   <div class="product-description">
                     <h1>Shirt</h1>
                     <p class="product-code">Product code X7R2OPX</p>
@@ -52,7 +46,7 @@
             <li class="product row">
               <div class="col-product">
                 <figure class="product-image">
-                  <img src="img/mug.png" alt="Mug" />
+                  <img src="./assets/img/mug.png" alt="Mug" />
                   <div class="product-description">
                     <h1>Mug</h1>
                     <p class="product-code">Product code X2G2OPZ</p>
@@ -79,7 +73,7 @@
             <li class="product row">
               <div class="col-product">
                 <figure class="product-image">
-                  <img src="img/cap.png" alt="Cap" />
+                  <img src="./assets/img/cap.png" alt="Cap" />
                   <div class="product-description">
                     <h1>Cap</h1>
                     <p class="product-code">Product code X3W2OPY</p>
@@ -134,6 +128,8 @@
           </div>
         </aside>
       </main>
-    </div>
-  </body>
-</html>
+    `;
+  }
+}
+
+customElements.define('app-cart', AppCart);
