@@ -6,105 +6,105 @@ export class AppCart extends LitElement {
       <link href="./assets/css/main.css" rel="stylesheet" />
       <main class="App">
         <section class="products">
-          <h1 class="main">Shopping cart</h1>
-          <ul class="products-list tableHead">
-            <li class="products-list-title row">
+          <h1 class="border-bottom-title">Shopping cart</h1>
+          <ul class="products__list tableHead">
+            <li class="products__list-title row">
               <div class="col-product">Product details</div>
               <div class="col-quantity">Quantity</div>
               <div class="col-price">Price</div>
               <div class="col-total">Total</div>
             </li>
           </ul>
-          <ul class="products-list">
+          <ul class="products__list">
             <li class="product row">
               <div class="col-product">
-                <figure class="product-image">
-                  <img src="./assets/img/shirt.png" alt="Shirt" />
+                <figure class="products__image-container">
+                  <img class="products__image" src="./assets/img/shirt.png" alt="Shirt" />
                   <div class="product-description">
-                    <h1>Shirt</h1>
-                    <p class="product-code">Product code X7R2OPX</p>
+                    <h1 class="products__item-title">Shirt</h1>
+                    <p class="products__code">Product code X7R2OPX</p>
                   </div>
                 </figure>
               </div>
               <div class="col-quantity">
-                <button class="count">-</button
-                ><input type="text" class="product-quantity" value="3" /><button
-                  class="count"
+                <button class="products__count-button">-</button
+                ><input type="text" class="products__quantity" value="3" /><button
+                  class="products__count-button"
                 >
                   +
                 </button>
               </div>
               <div class="col-price">
-                <span class="product-price">20</span
+                <span class="products__price">20</span
                 ><span class="product-currency currency">€</span>
               </div>
               <div class="col-total">
-                <span class="product-price">60</span
+                <span class="products__price">60</span
                 ><span class="product-currency currency">€</span>
               </div>
             </li>
             <li class="product row">
               <div class="col-product">
-                <figure class="product-image">
-                  <img src="./assets/img/mug.png" alt="Mug" />
+                <figure class="products__image-container">
+                  <img class="products__image" src="./assets/img/mug.png" alt="Mug" />
                   <div class="product-description">
-                    <h1>Mug</h1>
-                    <p class="product-code">Product code X2G2OPZ</p>
+                    <h1 class="products__item-title">Mug</h1>
+                    <p class="products__code">Product code X2G2OPZ</p>
                   </div>
                 </figure>
               </div>
               <div class="col-quantity">
-                <button class="count">-</button
-                ><input type="text" class="product-quantity" value="4" /><button
-                  class="count"
+                <button class="products__count-button">-</button
+                ><input type="text" class="products__quantity" value="4" /><button
+                  class="products__count-button"
                 >
                   +
                 </button>
               </div>
               <div class="col-price">
-                <span class="product-price">5</span
+                <span class="products__price">5</span
                 ><span class="product-currency currency">€</span>
               </div>
               <div class="col-total">
-                <span class="product-price">20</span
+                <span class="products__price">20</span
                 ><span class="product-currency currency">€</span>
               </div>
             </li>
             <li class="product row">
               <div class="col-product">
-                <figure class="product-image">
-                  <img src="./assets/img/cap.png" alt="Cap" />
+                <figure class="products__image-container">
+                  <img class="products__image" src="./assets/img/cap.png" alt="Cap" />
                   <div class="product-description">
-                    <h1>Cap</h1>
-                    <p class="product-code">Product code X3W2OPY</p>
+                    <h1 class="products__item-title">Cap</h1>
+                    <p class="products__code">Product code X3W2OPY</p>
                   </div>
                 </figure>
               </div>
               <div class="col-quantity">
-                <button class="count">-</button
-                ><input type="text" class="product-quantity" value="4" /><button
-                  class="count"
+                <button class="products__count-button">-</button
+                ><input type="text" class="products__quantity" value="4" /><button
+                  class="products__count-button"
                 >
                   +
                 </button>
               </div>
               <div class="col-price">
-                <span class="product-price">10</span
+                <span class="products__price">10</span
                 ><span class="product-currency currency">€</span>
               </div>
               <div class="col-total">
-                <span class="product-price">40</span
+                <span class="products__price">40</span
                 ><span class="product-currency currency">€</span>
               </div>
             </li>
           </ul>
         </section>
         <aside class="summary">
-          <h1 class="main">Order Summary</h1>
+          <h1 class="summary__main-title">Order Summary</h1>
           <ul class="summary-items wrapper border">
-            <li>
+            <li class="summary__list-item">
               <span class="summary-items-number">11 Items</span
-              ><span class="summary-items-price"
+              ><span class="summary__items-price"
                 >120<span class="currency">€</span></span
               >
             </li>
@@ -112,19 +112,25 @@ export class AppCart extends LitElement {
           <div class="summary-discounts wrapper-half border">
             <h2>Discounts</h2>
             <ul>
-              <li><span>2x1 Mug offer</span><span>-10€</span></li>
-              <li><span>x3 Shirt offer</span><span>-3€</span></li>
-              <li><span>Promo code</span><span>0€</span></li>
-            </ul>
-          </div>
-          <div class="summary-total wrapper">
-            <ul>
-              <li>
-                <span class="summary-total-cost">Total cost</span
-                ><span class="summary-total-price">107€</span>
+              <li class="summary__list-item">
+                <span>2x1 Mug offer</span><span>-10€</span>
+              </li>
+              <li class="summary__list-item">
+                <span>x3 Shirt offer</span><span>-3€</span>
+              </li>
+              <li class="summary__list-item">
+                <span>Promo code</span><span>0€</span>
               </li>
             </ul>
-            <button type="submit">Checkout</button>
+          </div>
+          <div class="summary__total wrapper">
+            <ul>
+              <li class="summary__list-item">
+                <span class="summary__total-cost">Total cost</span
+                ><span class="summary__total-price">107€</span>
+              </li>
+            </ul>
+            <button class="summary__submit" type="submit">Checkout</button>
           </div>
         </aside>
       </main>
