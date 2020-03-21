@@ -1,5 +1,5 @@
 import { Image } from "./Image";
-import { Amount } from "../../../types";
+import { Amount } from "./Amount";
 
 export class Product {
   constructor(image, title, code, price) {

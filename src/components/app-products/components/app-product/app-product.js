@@ -1,5 +1,5 @@
 import { LitElement, html } from "lit-element";
-import { Product } from "../../types/Product";
+import { Product } from "../../../../types";
 
 export class AppProduct extends LitElement {
 

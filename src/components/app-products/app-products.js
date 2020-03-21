@@ -1,7 +1,6 @@
 import { LitElement, html } from 'lit-element';
 import './components/app-product/app-product';
-import { Product, Image } from './types';
-import { Amount } from '../../types';
+import { Product, Image, Amount } from '../../types';
 
 export class AppProducts extends LitElement {
 
