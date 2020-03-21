@@ -7,8 +7,16 @@ export class AppProduct extends LitElement {
     return {
       product: {
         type: Object
+      },
+      count: {
+        type: Number
       }
     }
+  }
+
+  constructor() {
+    super();
+    this.count = 0;
   }
 
   set product(val) {
@@ -37,24 +45,35 @@ export class AppProduct extends LitElement {
           </figure>
         </div>
         <div class="col-quantity">
-          <button class="products__count-button">-</button>
+          <button
+            class="products__count-button"
+            @click="${this._updateCount.bind(this, -1)}"
+          >-</button>
           <input
             type="text"
             class="products__quantity"
-            value="3"
+            value="${this.count}"
           />
-          <button class="products__count-button">+</button>
+          <button
+            class="products__count-button"
+            @click="${this._updateCount.bind(this, 1)}"
+          >+</button>
         </div>
         <div class="col-price">
           <span class="products__price">${price.value}</span
           ><span class="product-currency currency">${price.symbol}</span>
         </div>
         <div class="col-total">
-          <span class="products__price">60</span
-          ><span class="product-currency currency">€</span>
+          <span class="products__price">${price.value * this.count}</span
+          ><span class="product-currency currency">${price.symbol}</span>
         </div>
       </div>
     `;
+  }
+
+  _updateCount(increment) {
+    const newAmount = Math.floor(this.count + increment);
+    this.count = Math.max(newAmount, 0);
   }
 
 }
