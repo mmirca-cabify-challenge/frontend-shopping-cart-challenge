@@ -259,7 +259,7 @@ h1 {
   justify-content: space-between;
 }
 
-.row + .row {
+.product + .product {
   margin-top: 32px;
 }
 
