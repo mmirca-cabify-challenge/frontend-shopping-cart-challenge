@@ -7,16 +7,12 @@ export class AppProduct extends LitElement {
     return {
       product: {
         type: Object
-      },
-      count: {
-        type: Number
       }
     }
   }
 
   constructor(checkoutSrv = CheckoutService) {
     super();
-    this.count = 0;
     this.checkoutSrv = checkoutSrv;
   }
 
@@ -55,7 +51,7 @@ export class AppProduct extends LitElement {
           ><span class="product-currency currency">${price.symbol}</span>
         </div>
         <div class="col-total">
-          <span class="products__price">${price.value * this.count}</span
+          <span class="products__price">${price.value * count}</span
           ><span class="product-currency currency">${price.symbol}</span>
         </div>
       </div>
