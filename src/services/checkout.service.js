@@ -21,30 +21,51 @@ export class CheckoutService {
     return this._checkoutProducts$;
   }
 
+  /**
+   * To unscan a product we find the product by the provided title and we
+   * update the products list by removing one
+   * @param {String} productTitle 
+   */
   unscan(productTitle) {
     this._checkoutProducts = this._getUpdatedCheckoutProducts(productTitle, -1);
     this._checkoutProducts$.next(this._checkoutProducts);
     return this;
   }
 
+  /**
+   * To scan a product we find the product by the provided title and we
+   * update the products list by adding one
+   * @param {String} productTitle 
+   */
   scan(productTitle) {
     this._checkoutProducts = this._getUpdatedCheckoutProducts(productTitle, 1);
     this._checkoutProducts$.next(this._checkoutProducts);
     return this;
   }
 
+  /**
+   * To retrieve the items count we iterate the products list and
+   * add up each item's count
+   */
   itemsCount() {
     return this._checkoutProducts
       .map((checkoutProduct) => checkoutProduct.count)
       .reduce((totalCount, count) => totalCount + count);
   }
 
+  /**
+   * To get the raw total we iterate the products list and add up each item's price
+   */
   rawTotal() {
     return this._checkoutProducts
       .map((checkoutProduct) => checkoutProduct.count * checkoutProduct.price.value)
       .reduce((total = 0, productPrice) => total + productPrice);
   }
 
+  /**
+   * To get the total we iterate the products list and add up each item's price
+   * then we substract the applied discounts
+   */
   total() {
     const rawTotal = this.rawTotal();
     const appliedDiscounts = this.getAppliedDiscounts();
@@ -52,6 +73,10 @@ export class CheckoutService {
     return rawTotal - discountTotal;
   }
 
+  /**
+   * To get the applied discounts we call the discounts service with the
+   * current products and discounts
+   */
   getAppliedDiscounts() {
     return this.discountSrv.getAppliedDiscounts(this._checkoutProducts, this._checkoutDiscounts);
   }

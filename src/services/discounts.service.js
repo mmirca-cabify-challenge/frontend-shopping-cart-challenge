@@ -28,6 +28,12 @@ export class DiscountsService {
     ]
   }
 
+  /**
+   * To get the applied discounts we iterate the products and find out how many
+   * times it matches each one of the available discounts
+   * @param {Array} checkoutProducts 
+   * @param {Array} availableDiscounts 
+   */
   getAppliedDiscounts(checkoutProducts, availableDiscounts) {
     if (!checkoutProducts instanceof Array) {
       return [];
@@ -36,6 +42,10 @@ export class DiscountsService {
     return this._getAppliedDiscounts(purchasedProducts, availableDiscounts);
   }
 
+  /**
+   * To get the total we iterate each applied discount and add up the each one's count
+   * @param {Array} appliedDiscounts 
+   */
   total(appliedDiscounts) {
     return appliedDiscounts
       .map((appliedDiscount) => appliedDiscount.count * appliedDiscount.amount.value)
