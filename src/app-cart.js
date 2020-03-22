@@ -7,7 +7,8 @@ export class AppCart extends LitElement {
 
   static get properties() {
     return {
-      products: { type: Array }
+      products: { type: Array },
+      appliedDiscounts: { type: Array }
     }
   }
 
@@ -23,6 +24,7 @@ export class AppCart extends LitElement {
     this._subscriptions.push(
       this.checkoutSrv.checkoutProducts$.subscribe((products) => {
         this.products = products;
+        this.appliedDiscounts = this.checkoutSrv.getAppliedDiscounts();
       })
     );
   }
@@ -33,6 +35,9 @@ export class AppCart extends LitElement {
   }
 
   render() {
+    const rawTotal = this.checkoutSrv.rawTotal();
+    const total = this.checkoutSrv.total();
+    const itemsCount = this.checkoutSrv.itemsCount();
     return html`
       <link href="./assets/css/main.css" rel="stylesheet" />
       <main class="App">
@@ -40,7 +45,12 @@ export class AppCart extends LitElement {
           <app-products .products=${this.products}></app-products>
         </section>
         <aside class="summary">
-          <app-summary></app-summary>
+          <app-summary
+            total="${total}"
+            rawTotal="${rawTotal}"
+            itemsCount="${itemsCount}"
+            .appliedDiscounts=${this.appliedDiscounts}
+          ></app-summary>
         </aside>
       </main>
     `;

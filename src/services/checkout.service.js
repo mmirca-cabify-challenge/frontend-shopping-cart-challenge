@@ -5,10 +5,6 @@ import DiscountsService from "./discounts.service";
 
 export class CheckoutService {
 
-  get checkoutProducts$() {
-    return this._checkoutProducts$;
-  }
-
   constructor({
     products,
     discounts,
@@ -21,6 +17,10 @@ export class CheckoutService {
     this.discountSrv = discountSrv;
   }
 
+  get checkoutProducts$() {
+    return this._checkoutProducts$;
+  }
+
   unscan(productTitle) {
     this._checkoutProducts = this._getUpdatedCheckoutProducts(productTitle, -1);
     this._checkoutProducts$.next(this._checkoutProducts);
@@ -31,6 +31,12 @@ export class CheckoutService {
     this._checkoutProducts = this._getUpdatedCheckoutProducts(productTitle, 1);
     this._checkoutProducts$.next(this._checkoutProducts);
     return this;
+  }
+
+  itemsCount() {
+    return this._checkoutProducts
+      .map((checkoutProduct) => checkoutProduct.count)
+      .reduce((totalCount, count) => totalCount + count);
   }
 
   rawTotal() {

@@ -1,6 +1,7 @@
 import { Product, Amount, Image } from "../types";
 
 export class ProductsService {
+
   get products() {
     return [
       new Product({
@@ -32,6 +33,7 @@ export class ProductsService {
       })
     ];
   }
+
 }
 
 export default new ProductsService();
