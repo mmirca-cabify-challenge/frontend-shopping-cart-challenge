@@ -1,5 +1,5 @@
 import { LitElement, html } from "lit-element";
-import { Product } from "../../../../types";
+import CheckoutService from '../../../../services/checkout.service';
 
 export class AppProduct extends LitElement {
 
@@ -14,24 +14,15 @@ export class AppProduct extends LitElement {
     }
   }
 
-  constructor() {
+  constructor(checkoutSrv = CheckoutService) {
     super();
     this.count = 0;
+    this.checkoutSrv = checkoutSrv;
   }
 
-  set product(val) {
-    if (val instanceof Product) {
-      this._product = val;
-    }
-  }
 
   render() {
-    if (!this._product) {
-      return html`
-        <p>Unable to load product</p>
-      `;
-    }
-    const { image, code, title, price } = this._product;
+    const { image, code, title, price, count } = this.product;
     return html`
       <link href="./assets/css/main.css" rel="stylesheet" />
       <div class="row">
@@ -47,16 +38,16 @@ export class AppProduct extends LitElement {
         <div class="col-quantity">
           <button
             class="products__count-button"
-            @click="${this._updateCount.bind(this, -1)}"
+            @click="${this._unscan.bind(this, title)}"
           >-</button>
           <input
             type="text"
             class="products__quantity"
-            value="${this.count}"
+            value="${count}"
           />
           <button
             class="products__count-button"
-            @click="${this._updateCount.bind(this, 1)}"
+            @click="${this._scan.bind(this, title)}"
           >+</button>
         </div>
         <div class="col-price">
@@ -71,9 +62,12 @@ export class AppProduct extends LitElement {
     `;
   }
 
-  _updateCount(increment) {
-    const newAmount = Math.floor(this.count + increment);
-    this.count = Math.max(newAmount, 0);
+  _unscan(productTitle) {
+    this.checkoutSrv.unscan(productTitle);
+  }
+
+  _scan(productTitle) {
+    this.checkoutSrv.scan(productTitle);
   }
 
 }

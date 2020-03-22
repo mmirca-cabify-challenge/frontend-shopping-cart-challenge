@@ -1,8 +1,37 @@
 import { LitElement, html } from 'lit-element';
 import './components/app-product/app-product';
-import { Product, Image, Amount } from '../../types';
+import CheckoutService from '../../services/checkout.service';
 
 export class AppProducts extends LitElement {
+
+  static get properties() {
+    return {
+      products: {
+        type: Array
+      }
+    }
+  }
+
+  constructor(checkoutSrv = CheckoutService) {
+    super();
+    this.products = [];
+    this.checkoutSrv = checkoutSrv;
+    this._subscriptions = [];
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+    this._subscriptions.push(
+      this.checkoutSrv.products$.subscribe((products) => {
+        this.products = products;
+      })
+    );
+  }
+
+  disconnectedCallback() {
+    this._subscriptions
+      .forEach((subscription) => subscription.unsubscribe());
+  }
 
   render() {
     return html`
@@ -17,7 +46,7 @@ export class AppProducts extends LitElement {
         </li>
       </ul>
       <ul class="products__list">
-        ${this._getProducts().map((product) => html`
+        ${this.products.map((product) => html`
           <li class="product">
             <app-product .product=${product}></app-product>
           </li>
@@ -26,29 +55,6 @@ export class AppProducts extends LitElement {
     `;
   }
 
-  _getProducts() {
-    return [
-      new Product(
-        new Image('./assets/img/shirt.png', 'Shirt' ),
-        'Shirt',
-        'X7R2OPX',
-        new Amount(20)
-      ),
-      new Product(
-        new Image('./assets/img/mug.png', 'Mug'),
-        'Mug',
-        'X2G2OPZ',
-        new Amount(5)
-      ),
-      new Product(
-        new Image('./assets/img/cap.png', 'Cap'),
-        'Cap',
-        'X3W2OPY',
-        new Amount(10)
-      )
-    ];
-  }
-
 }
 
-customElements.define('app-products', AppProducts);
+customElements.define('app-products',  AppProducts);
