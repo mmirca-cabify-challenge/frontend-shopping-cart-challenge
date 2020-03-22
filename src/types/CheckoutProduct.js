@@ -2,8 +2,8 @@ import { Product } from "./Product";
 
 export class CheckoutProduct extends Product {
 
-  constructor({ image, title, code, price, count } = {}) {
-    super({ image, title, code, price });
+  constructor({ count, ...product } = {}) {
+    super(product);
     this.count = count || 0;
   }
 
