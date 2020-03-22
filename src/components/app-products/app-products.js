@@ -1,36 +1,17 @@
 import { LitElement, html } from 'lit-element';
 import './components/app-product/app-product';
-import CheckoutService from '../../services/checkout.service';
 
 export class AppProducts extends LitElement {
 
   static get properties() {
     return {
-      products: {
-        type: Array
-      }
+      products: { type: Array }
     }
   }
 
-  constructor(checkoutSrv = CheckoutService) {
+  constructor() {
     super();
     this.products = [];
-    this.checkoutSrv = checkoutSrv;
-    this._subscriptions = [];
-  }
-
-  connectedCallback() {
-    super.connectedCallback();
-    this._subscriptions.push(
-      this.checkoutSrv.checkoutProducts$.subscribe((products) => {
-        this.products = products;
-      })
-    );
-  }
-
-  disconnectedCallback() {
-    this._subscriptions
-      .forEach((subscription) => subscription.unsubscribe());
   }
 
   render() {
