@@ -22,7 +22,7 @@ export class AppProducts extends LitElement {
   connectedCallback() {
     super.connectedCallback();
     this._subscriptions.push(
-      this.checkoutSrv.products$.subscribe((products) => {
+      this.checkoutSrv.checkoutProducts$.subscribe((products) => {
         this.products = products;
       })
     );

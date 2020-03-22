@@ -1,38 +1,42 @@
 import ProductsService from "./products.service";
 import { BehaviorSubject } from 'rxjs';
+import { CheckoutProduct } from "../types";
 
 export class CheckoutService {
 
-  get products$() {
-    return this._products$;
+  get checkoutProducts$() {
+    return this._checkoutProducts$;
   }
 
   constructor({ products }) {
-    this._products = (products instanceof Array ? products : [])
-      .map((product) => ({ ...product, count: 0 }));
-    this._products$ = new BehaviorSubject(this._products);
+    this._checkoutProducts = (products instanceof Array ? products : [])
+      .map((product) => new CheckoutProduct({ ...product, count: 0 }));
+    this._checkoutProducts$ = new BehaviorSubject(this._checkoutProducts);
   }
 
   unscan(productTitle) {
-    const updatedProducts = this._getUpdateProductCount(productTitle, -1);
-    this._products$.next(updatedProducts);
+    this._checkoutProducts = this._getUpdateProductCount(productTitle, -1);
+    this._checkoutProducts$.next(this._checkoutProducts);
     return this;
   }
 
   scan(productTitle) {
-    const updatedProducts = this._getUpdateProductCount(productTitle, 1);
-    this._products$.next(updatedProducts);
+    this._checkoutProducts = this._getUpdateProductCount(productTitle, 1);
+    this._checkoutProducts$.next(this._checkoutProducts);
     return this;
   }
 
   _getUpdateProductCount(productTitle, increment) {
-    return this._products.map((product) => {
-      if (product.title === productTitle) {
-        product.count = Math.max(0, product.count + increment);
-        return {...product};
-      }
-      return product;
-    });
+    return this._checkoutProducts
+      .map((checkoutProduct) => {
+        if (checkoutProduct.title !== productTitle) {
+          return checkoutProduct;
+        }
+        return new CheckoutProduct({
+          ...checkoutProduct,
+          count: checkoutProduct.count + increment
+        });
+      });
   }
 
 }
