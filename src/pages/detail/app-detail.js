@@ -1,14 +1,58 @@
 import { LitElement, html } from 'lit-element';
+import CheckoutService from '../../services/checkout.service';
+import { Router } from '@vaadin/router';
 
 export class AppDetail extends LitElement {
 
+  static get properties() {
+    return {
+      product: { type: Object },
+      code: { type: String }
+    }
+  }
+
+  constructor(
+    checkoutSrv = CheckoutService,
+    router = Router
+  ) {
+    super();
+    this.products = [];
+    this.checkoutSrv = checkoutSrv;
+    this._subscriptions = [];
+    this.router = router;
+    this.code = '';
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+    this.code = ((this.location || {}).params || {}).code;
+    this._subscriptions.push(
+      this.checkoutSrv.checkoutProducts$.subscribe((products) => {
+        const foundProduct = products.find((product) => product.code === this.code);
+        if (!foundProduct || !this.code) {
+          this.router.go('/');
+        }
+        this.product = foundProduct;
+      })
+    );
+  }
+
+  disconnectedCallback() {
+    this._subscriptions
+      .forEach((subscription) => subscription.unsubscribe());
+  }
+
   render() {
+    if (!this.product) {
+      return;
+    }
+    const { image, title, code, description, price } = this.product;
     return html`
       <link href="./assets/css/main.css" rel="stylesheet" />
       <main class="App">
         <div
           class="products products--detail"
-          style="background-image: url(./assets/img/mug-xl.jpg)"
+          style="background-image: url(${image.src})"
         ></div>
         <div class="summary summary--detail">
           <div>
@@ -18,18 +62,27 @@ export class AppDetail extends LitElement {
               </a>
             </div>
             <h1 class="border-bottom-title">
-              <span>Shopping cart</span>
-              <span>20€</span>
+              <span>${title}</span>
+              <span>${price.value}${price.symbol}</span>
             </h1>
             <p class="summary__main-text">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sodales semper elit sit amet interdum. Praesent volutpat sed elit vel consectetur. Nulla tempus tincidunt ex, sit amet semper ipsum imperdiet varius. In rutrum aliquam nisl, sagittis faucibus felis bibendum id.
+              ${description}
             </p>
-            <p class="summary__code">Product code X7R2OPX</p>
+            <p class="summary__code">Product code ${code}</p>
           </div>
-          <button class="summary__submit" type="submit">Add to cart</button>
+          <button
+            class="summary__submit"
+            @click="${this._scan.bind(this, title)}"
+            type="submit"
+          >Add to cart</button>
         </div>
       </main>
     `;
+  }
+
+  _scan(productTitle) {
+    this.checkoutSrv.scan(productTitle);
+    this.router.go('/');
   }
 
 }
