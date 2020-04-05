@@ -327,7 +327,12 @@ input {
 .products {
   padding: 40px 32px 40px 56px;
   background-size: cover;
+  background-position: center center;
   flex: 1;
+}
+
+.products--detail {
+  padding: 0px;
 }
 
 .products__item-title {

@@ -7,7 +7,7 @@ export class AppDetail extends LitElement {
       <link href="./assets/css/main.css" rel="stylesheet" />
       <main class="App">
         <div
-          class="products"
+          class="products products--detail"
           style="background-image: url(./assets/img/mug-xl.jpg)"
         ></div>
         <div class="summary summary--detail">
