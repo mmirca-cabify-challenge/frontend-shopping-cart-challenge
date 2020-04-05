@@ -18,6 +18,7 @@
     "url": "https://github.com/mmirca-cabify-challenge/frontend-shopping-cart-challenge/issues"
   },
   "dependencies": {
+    "@vaadin/router": "^1.7.1",
     "lit-element": "^2.2.1",
     "rxjs": "^6.5.4"
   },
