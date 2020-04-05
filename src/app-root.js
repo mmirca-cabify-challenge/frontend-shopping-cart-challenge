@@ -7,7 +7,12 @@ router.setRoutes([
   {
     path: '/detail/:code',
     component: 'app-detail',
+    animate: true,
     action: async () => await import('./pages/detail/app-detail')
   },
-  { path: '(.*)', component: 'app-cart' }
+  {
+    path: '(.*)',
+    animate: true,
+    component: 'app-cart'
+  }
 ]);

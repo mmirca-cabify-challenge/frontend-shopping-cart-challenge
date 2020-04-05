@@ -13,7 +13,9 @@ export class AppDetail extends LitElement {
         <div class="summary summary--detail">
           <div>
             <div class="summary__close-wrapper">
-              <button class="summary__close">&times;</button>
+              <a router-link href="/" class="summary__close">
+                &times;
+              </a>
             </div>
             <h1 class="border-bottom-title">
               <span>Shopping cart</span>

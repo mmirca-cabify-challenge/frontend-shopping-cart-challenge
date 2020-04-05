@@ -26,7 +26,9 @@ export class AppProduct extends LitElement {
           <figure class="products__image-container">
             <img class="products__image" src="${image.src}" alt=${image.alt} />
             <div class="product-description">
-              <h1 class="products__item-title">${title}</h1>
+              <a href="/detail/X7R2OPX" router-link>
+                <h1 class="products__item-title">${title}</h1>
+              </a>
               <p class="products__code">Product code ${code}</p>
             </div>
           </figure>
