@@ -254,6 +254,7 @@ h1 {
 
 .row {
   position: relative;
+  width: 100%;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
@@ -301,6 +302,9 @@ input {
 .border-bottom-title {
   padding-bottom: 16px;
   border-bottom: 1px solid rgba(33, 34, 64, 0.16);
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
 }
 
 .products__quantity,
@@ -322,6 +326,7 @@ input {
 
 .products {
   padding: 40px 32px 40px 56px;
+  background-size: cover;
   flex: 1;
 }
 
@@ -388,6 +393,10 @@ input {
   color: #212240;
 }
 
+.summary--detail {
+  padding: 20px 32px;
+}
+
 .summary > * {
   width: 100%;
 }
@@ -422,6 +431,38 @@ input {
 
 .summary__list-item + .summary__list-item {
   margin-top: 20px;
+}
+
+.summary__main-text,
+.summary__code {
+  font-weight: bold;
+  font-size: 0.95em;
+  line-height: 1.3;
+}
+
+.summary__main-text {
+  padding: 16px 0px 32px;
+  border-bottom: 1px solid rgba(33, 34, 64, 0.16);
+  color: #717285;
+  margin-bottom: 16px;
+}
+
+.summary__close-wrapper {
+  display: flex;
+  flex-direction: row-reverse;
+  margin-bottom: 64px;
+}
+
+.summary__close {
+  font-size: 45px;
+  color: #a6a7b3;
+  background: none;
+  cursor: pointer;
+}
+
+.summary__code {
+  color: #a6a7b3;
+  margin-bottom: 16px;
 }
 
 .summary__submit {
