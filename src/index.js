@@ -1,1 +1,1 @@
-import './app-cart';
+import './app-root';

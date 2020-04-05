@@ -1,5 +1,5 @@
 import { LitElement, html } from "lit-element";
-import CheckoutService from '../../../../services/checkout.service';
+import CheckoutService from '../../../services/checkout.service';
 
 export class AppProduct extends LitElement {
 

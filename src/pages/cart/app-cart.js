@@ -1,7 +1,7 @@
 import { LitElement, html } from 'lit-element';
-import './components/app-products/app-products';
-import './components/app-summary/app-summary';
-import CheckoutService from './services/checkout.service';
+import './components/app-products';
+import './components/app-summary';
+import CheckoutService from '../../services/checkout.service';
 
 export class AppCart extends LitElement {
 
