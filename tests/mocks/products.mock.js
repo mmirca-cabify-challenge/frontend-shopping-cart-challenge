@@ -8,10 +8,7 @@ export const getProductsMock = () => [
     title: 'Shirt',
     code: 'X7R2OPX',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sodales semper elit sit amet interdum. Praesent volutpat sed elit vel consectetur. Nulla tempus tincidunt ex, sit amet semper ipsum imperdiet varius. In rutrum aliquam nisl, sagittis faucibus felis bibendum id.',
-    price: {
-      value: 20,
-      symbol: '€',
-    }
+    price: { value: 20, symbol: '€' }
   },
   {
     image: {
@@ -22,10 +19,7 @@ export const getProductsMock = () => [
     title: 'Mug',
     code: 'X2G2OPZ',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sodales semper elit sit amet interdum. Praesent volutpat sed elit vel consectetur. Nulla tempus tincidunt ex, sit amet semper ipsum imperdiet varius. In rutrum aliquam nisl, sagittis faucibus felis bibendum id.',
-    price: {
-      value: 5,
-      symbol: '€',
-    }
+    price: { value: 5, symbol: '€' }
   },
   {
     image: {
@@ -36,9 +30,19 @@ export const getProductsMock = () => [
     title: 'Cap',
     code: 'X3W2OPY',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sodales semper elit sit amet interdum. Praesent volutpat sed elit vel consectetur. Nulla tempus tincidunt ex, sit amet semper ipsum imperdiet varius. In rutrum aliquam nisl, sagittis faucibus felis bibendum id.',
-    price: {
-      value: 10,
-      symbol: '€',
-    }
+    price: { value: 10, symbol: '€' }
   },
 ];
+
+export const getMugProductMock = (count) => ({
+  image: {
+    src: './assets/img/mug-xl.jpg',
+    alt: 'Mug',
+    thumbnail: './assets/img/mug.png',
+  },
+  title: 'Mug',
+  code: 'X2G2OPZ',
+  description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sodales semper elit sit amet interdum. Praesent volutpat sed elit vel consectetur. Nulla tempus tincidunt ex, sit amet semper ipsum imperdiet varius. In rutrum aliquam nisl, sagittis faucibus felis bibendum id.',
+  price: { value: 5, symbol: '€' },
+  count
+});
