@@ -35,7 +35,7 @@ export class DiscountsService {
    * @param {Array} availableDiscounts 
    */
   getAppliedDiscounts(checkoutProducts, availableDiscounts) {
-    if (!checkoutProducts instanceof Array) {
+    if (!this._isArray(checkoutProducts) || !this._isArray(availableDiscounts)) {
       return [];
     }
     const purchasedProducts = this._getPurchasedProducts(checkoutProducts);
@@ -47,6 +47,9 @@ export class DiscountsService {
    * @param {Array} appliedDiscounts 
    */
   total(appliedDiscounts) {
+    if (!this._isArray(appliedDiscounts)) {
+      return 0;
+    }
     return appliedDiscounts
       .map((appliedDiscount) => appliedDiscount.count * appliedDiscount.amount.value)
       .reduce((totalDiscount, discountAmount) => totalDiscount + discountAmount, 0);
@@ -56,10 +59,7 @@ export class DiscountsService {
     const purchasedProducts = {};
     checkoutProducts.forEach((checkoutProduct) => {
       const { title, count } = checkoutProduct;
-      if (!purchasedProducts[title]) {
-        purchasedProducts[title] = 0;
-      }
-      purchasedProducts[title] = purchasedProducts[title] + count;
+      purchasedProducts[title] = count;
     });
     return purchasedProducts;
   }
@@ -77,6 +77,10 @@ export class DiscountsService {
         count: Math.min(...countOfAppliedCondtions)
       });
     });
+  }
+
+  _isArray(arr) {
+    return arr instanceof Array;
   }
 
 }
