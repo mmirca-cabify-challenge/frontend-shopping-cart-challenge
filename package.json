@@ -33,7 +33,8 @@
   },
   "jest": {
     "coveragePathIgnorePatterns" : [
-      "src/types"
+      "src/types",
+      "tests"
     ]
   },
   "homepage": "https://github.com/mmirca-cabify-challenge/frontend-shopping-cart-challenge#readme"
