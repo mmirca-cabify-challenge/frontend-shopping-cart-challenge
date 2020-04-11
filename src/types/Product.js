@@ -8,7 +8,11 @@ export class Product {
     this.title = title || '';
     this.code = code || '';
     this.description = description || '';
-    this.price = price instanceof Amount ? price : new Amount();
+    if (price instanceof Amount) {
+      this.price = price
+    } else {
+      this.price = new Amount({ value: (price || {}).value });
+    }
   }
 
 }

@@ -49,7 +49,7 @@ export class DiscountsService {
   total(appliedDiscounts) {
     return appliedDiscounts
       .map((appliedDiscount) => appliedDiscount.count * appliedDiscount.amount.value)
-      .reduce((totalDiscount = 0, discountAmount) => totalDiscount + discountAmount);
+      .reduce((totalDiscount, discountAmount) => totalDiscount + discountAmount, 0);
   }
 
   _getPurchasedProducts(checkoutProducts) {

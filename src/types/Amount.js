@@ -1,7 +1,8 @@
 export class Amount {
 
   constructor({ value, symbol } = {}) {
-    this.value = value || 0;
+    const parsedValue = Number(value);
+    this.value = isNaN(parsedValue) ? 0 : value;
     this.symbol = symbol || '€';
   }
 

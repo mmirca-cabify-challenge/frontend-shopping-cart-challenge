@@ -11,7 +11,7 @@ export class CheckoutService {
     discountSrv = DiscountsService
   } = {}) {
     this._checkoutProducts = (products instanceof Array ? products : [])
-      .map((product) => new CheckoutProduct({ ...product, count: 0 }));
+      .map((product) => new CheckoutProduct(product));
     this._checkoutProducts$ = new BehaviorSubject(this._checkoutProducts);
     this._checkoutDiscounts = discounts;
     this.discountSrv = discountSrv;
@@ -50,7 +50,7 @@ export class CheckoutService {
   itemsCount() {
     return this._checkoutProducts
       .map((checkoutProduct) => checkoutProduct.count)
-      .reduce((totalCount, count) => totalCount + count);
+      .reduce((totalCount, count) => totalCount + count, 0);
   }
 
   /**
@@ -59,7 +59,7 @@ export class CheckoutService {
   rawTotal() {
     return this._checkoutProducts
       .map((checkoutProduct) => checkoutProduct.count * checkoutProduct.price.value)
-      .reduce((total = 0, productPrice) => total + productPrice);
+      .reduce((total, productPrice) => total + productPrice, 0);
   }
 
   /**
