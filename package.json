@@ -23,7 +23,7 @@
     "rxjs": "^6.5.4"
   },
   "devDependencies": {
-    "cap-rollup-config": "https://github.com/mmirca/cap-rollup-config.git#develop",
+    "cap-rollup-config": "^1.1.0",
     "rollup": "^1.25.2"
   },
   "homepage": "https://github.com/mmirca-cabify-challenge/frontend-shopping-cart-challenge#readme"
