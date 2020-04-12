@@ -27,8 +27,10 @@ export class CheckoutService {
    * @param {String} productTitle 
    */
   unscan(productTitle) {
-    this._checkoutProducts = this._getUpdatedCheckoutProducts(productTitle, -1);
-    this._checkoutProducts$.next(this._checkoutProducts);
+    this._updateCheckoutProducts(
+      productTitle,
+      (count) => count - 1
+    );
     return this;
   }
 
@@ -38,8 +40,23 @@ export class CheckoutService {
    * @param {String} productTitle 
    */
   scan(productTitle) {
-    this._checkoutProducts = this._getUpdatedCheckoutProducts(productTitle, 1);
-    this._checkoutProducts$.next(this._checkoutProducts);
+    this._updateCheckoutProducts(
+      productTitle,
+      (count) => count + 1  
+    );
+    return this;
+  }
+
+  /**
+   * To update a product count we find the product by the provided title and we
+   * update the products list by setting the new count
+   * @param {String} productTitle 
+   */
+  updateProductCount(productTitle, newCount) {
+    this._updateCheckoutProducts(
+      productTitle,
+      () => newCount
+    );
     return this;
   }
 
@@ -81,17 +98,21 @@ export class CheckoutService {
     return this.discountSrv.getAppliedDiscounts(this._checkoutProducts);
   }
 
-  _getUpdatedCheckoutProducts(productTitle, increment) {
-    return this._checkoutProducts
+  _updateCheckoutProducts(productTitle, countHandler) {
+    if (!(countHandler instanceof Function)) {
+      return this._checkoutProducts;
+    }
+    this._checkoutProducts = this._checkoutProducts
       .map((checkoutProduct) => {
         if (checkoutProduct.title !== productTitle) {
           return checkoutProduct;
         }
         return new CheckoutProduct({
           ...checkoutProduct,
-          count: checkoutProduct.count + increment
+          count: countHandler(checkoutProduct.count)
         });
       });
+    this._checkoutProducts$.next(this._checkoutProducts);
   }
 
 }

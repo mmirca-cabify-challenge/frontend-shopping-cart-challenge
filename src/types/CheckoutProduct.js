@@ -8,7 +8,12 @@ export class CheckoutProduct extends Product {
   }
 
   set count(val) {
-    this._count = Math.max(0, val);
+    const newCount = parseInt(val);
+    if (!isNaN(newCount)) {
+      this._count = Math.max(0, Math.floor(newCount));
+    } else {
+      this._count = 0;
+    }
   }
 
   get count() {

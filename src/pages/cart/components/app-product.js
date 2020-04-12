@@ -39,8 +39,12 @@ export class AppProduct extends LitElement {
             @click="${this._unscan.bind(this, title)}"
           >-</button>
           <input
+            id="app-product-input"
             type="text"
             class="products__quantity"
+            @keypress="${this._preventInvalidInput}"
+            @blur="${this._updateCount}"
+            .value="${count}"
             value="${count}"
           />
           <button
@@ -58,6 +62,29 @@ export class AppProduct extends LitElement {
         </div>
       </div>
     `;
+  }
+
+  _preventInvalidInput(event) {
+    if (!this._isNumericCharCode(event.charCode)) {
+      event.preventDefault();
+    }
+  }
+
+  _isNumericCharCode(charCode) {
+    return charCode >= 48 && charCode <= 57;
+  }
+
+  _getElementById(id) {
+    return this.shadowRoot.querySelector(`#${id}`);
+  }
+
+  _updateCount() {
+    const $input = this._getElementById('app-product-input');
+    this._updateProductCount(this.product.title, $input.value);
+  }
+
+  _updateProductCount(productTitle, newCount) {
+    this.checkoutSrv.updateProductCount(productTitle, newCount);
   }
 
   _unscan(productTitle) {
