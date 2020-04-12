@@ -54,6 +54,18 @@ describe('CheckoutService', () => {
         });
     });
   });
+  describe('updateProductCount()', () => {
+    it('should add update the shirt counter to 4 when called with "Shirt" and 4', (done) => {
+      fixture.updateProductCount('Shirt', 4);
+      fixture.checkoutProducts$
+        .pipe(first())
+        .subscribe((products) => {
+          const shirt = products.find((product) => product.title === 'Shirt');
+          expect(shirt.count).toBe(4);
+          done();
+        });
+    });
+  });
   describe('unscan()', () => {
     it('should set the shirt counter to 0 when called with "Shirt" and the counter is already 0', (done) => {
       fixture.unscan('Shirt');

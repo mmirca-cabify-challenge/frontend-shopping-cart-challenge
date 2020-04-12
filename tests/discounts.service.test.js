@@ -30,7 +30,6 @@ describe('DiscountsService', () => {
         [ getMugProductMock(4) ],
         getDiscountsMock()
       );
-      console.log(JSON.stringify(appliedDiscounts[0]));
       expect(appliedDiscounts[0].title).toBe('2x1 Mug offer');
       expect(appliedDiscounts[0].count).toBe(2);
     });

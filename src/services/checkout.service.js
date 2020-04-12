@@ -99,9 +99,6 @@ export class CheckoutService {
   }
 
   _updateCheckoutProducts(productTitle, countHandler) {
-    if (!(countHandler instanceof Function)) {
-      return this._checkoutProducts;
-    }
     this._checkoutProducts = this._checkoutProducts
       .map((checkoutProduct) => {
         if (checkoutProduct.title !== productTitle) {
