@@ -1,0 +1,41 @@
+{
+  "name": "frontend-shopping-cart-challenge",
+  "version": "1.0.0",
+  "description": "A shopping cart made using web components",
+  "main": "index.js",
+  "scripts": {
+    "build": "rollup -c",
+    "start": "rollup -c --watch",
+    "test": "jest --coverage",
+    "test:watch": "jest --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mmirca-cabify-challenge/frontend-shopping-cart-challenge.git"
+  },
+  "author": "mmirca",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mmirca-cabify-challenge/frontend-shopping-cart-challenge/issues"
+  },
+  "dependencies": {
+    "@vaadin/router": "^1.7.1",
+    "lit-element": "^2.2.1",
+    "rxjs": "^6.5.4"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.5",
+    "babel-jest": "^25.3.0",
+    "cap-rollup-config": "^1.1.0",
+    "jest": "^25.3.0",
+    "rollup": "^1.25.2"
+  },
+  "jest": {
+    "coveragePathIgnorePatterns" : [
+      "src/types",
+      "tests"
+    ]
+  },
+  "homepage": "https://github.com/mmirca-cabify-challenge/frontend-shopping-cart-challenge#readme"
+}
