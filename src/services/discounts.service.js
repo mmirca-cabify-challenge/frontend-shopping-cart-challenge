@@ -34,12 +34,12 @@ export class DiscountsService {
    * @param {Array} checkoutProducts 
    * @param {Array} availableDiscounts 
    */
-  getAppliedDiscounts(checkoutProducts, availableDiscounts) {
-    if (!this._isArray(checkoutProducts) || !this._isArray(availableDiscounts)) {
+  getAppliedDiscounts(checkoutProducts) {
+    if (!this._isArray(checkoutProducts)) {
       return [];
     }
     const purchasedProducts = this._getPurchasedProducts(checkoutProducts);
-    return this._getAppliedDiscounts(purchasedProducts, availableDiscounts);
+    return this._getAppliedDiscounts(purchasedProducts);
   }
 
   /**
@@ -64,8 +64,8 @@ export class DiscountsService {
     return purchasedProducts;
   }
 
-  _getAppliedDiscounts(purchasedProducts, availableDiscounts) {
-    return availableDiscounts.map((discount) => {
+  _getAppliedDiscounts(purchasedProducts) {
+    return this.availableDiscounts.map((discount) => {
       const countOfAppliedCondtions = discount.conditions
         .map((discountCondition) => {
           const purchasedProductCount = purchasedProducts[discountCondition.productTitle];

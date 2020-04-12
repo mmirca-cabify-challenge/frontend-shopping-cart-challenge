@@ -78,7 +78,7 @@ export class CheckoutService {
    * current products and discounts
    */
   getAppliedDiscounts() {
-    return this.discountSrv.getAppliedDiscounts(this._checkoutProducts, this._checkoutDiscounts);
+    return this.discountSrv.getAppliedDiscounts(this._checkoutProducts);
   }
 
   _getUpdatedCheckoutProducts(productTitle, increment) {
